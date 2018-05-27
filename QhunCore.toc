@@ -1,0 +1,39 @@
+## Interface: 70300
+## Title: QhunCore |c0000ff00[Lib]
+## Author: wartoshika <dev@qhun.de>
+## Notes: The core lib for my addons
+## Version: 2.0
+## DefaultState: enabled
+## OptionalDeps: QhunDebug, QhunUnitTest
+## SavedVariables: QhunCoreGlobalStorage
+## SavedVariablesPerCharacter: QhunCoreCharacterStorage
+
+global.lua
+functions.lua
+
+classes/message/abstractMessage.lua
+classes/message/consoleMessage.lua
+classes/message/errorMessage.lua
+classes/message/warningMessage.lua
+
+classes/ui/abstractUiElement.lua
+classes/ui/checkboxUiElement.lua
+classes/ui/tableUiElement.lua
+classes/ui/sliderUiElement.lua
+classes/ui/textboxUiElement.lua
+classes/ui/textUiElement.lua
+classes/ui/interfaceRenderer.lua
+classes/ui/interfaceSettingGenerator.lua
+
+classes/eventEmitter.lua
+classes/addon.lua
+classes/translation.lua
+classes/storage.lua
+
+tests/eventEmitter.test.lua
+tests/translation.test.lua
+tests/storage.test.lua
+tests/function.test.lua
+tests/qhunCore.test.lua
+
+core.lua
