@@ -1,6 +1,6 @@
 # QhunCore
 
-Yet another World of Warcraft library addon. I am developing this library with the focus on modularity, generics and performance. The memory footprint of the QhunCore addon is very small.
+Yet another World of Warcraft library addon. I am developing this library with the focus on modularity, generics and performance. Another aim was to use an understandable object orientated code pattern to improve readability and modularity. The memory footprint of the QhunCore addon is very small.
 
 Happy coding!
 
