@@ -1,4 +1,4 @@
-# QhunCore documentation of `classes/addon.lua`
+# QhunCore documentation of `QhunCore.Addon` in `classes/addon.lua`
 
 This class represents a single addon and provides functionality to handle addon load and unload phases, registering translation files, add user interface options or do many other init stuff for your addon.
 
@@ -48,6 +48,17 @@ QhunCore.Addon.new(addonName):registerAddonLoad(
 ```
 
 # Static API
+
+## Constructor
+
+## QhunCore.Addon `QhunCore.Addon.new(addonName)`
+
+Instantiates a new addon class.
+
+**Parameters:**
+- addonName (required, string) - *The name of your addon*
+
+---
 
 ## PUBLIC FUNCTIONS
 
