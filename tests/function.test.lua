@@ -91,6 +91,11 @@ function QhunCore.Test.Function:qhunDerivedFrom()
     self:assertFalse(qhunDerivedFrom(self, QhunCore.Test.Function))
 end
 
+function QhunCore.Test.Function:qhunInstanceOf()
+    self:assertTrue(qhunInstanceOf(self, QhunCore.Test.Function))
+    self:assertFalse(qhunInstanceOf(self, QhunUnitTest.Base))
+end
+
 function QhunCore.Test.Function:qhunTableValueOrDefault()
     local currentTable = {
         test = {

@@ -52,6 +52,10 @@ function QhunCore.Storage.new(addonName, storageName, perCharacter)
     return instance
 end
 
+--[[
+    PUBLIC FUNCTIONS
+]]
+
 -- a function that will return all values from the storage as table
 -- and tries to fill every nil value with the defaultValue parameter
 --[[
@@ -80,9 +84,6 @@ function QhunCore.Storage:setDefaultValues(defaultValues)
     return self
 end
 
---[[
-    PUBLIC FUNCTIONS
-]]
 -- get the current stored value from the storage using an identifyer.
 -- uncommited values will be returned!
 --[[

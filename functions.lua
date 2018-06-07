@@ -106,9 +106,32 @@ function qhunTableGetIndexByValue(table, value)
     return nil
 end
 
--- checks if the given object is an instanceof class
+-- checks if the given object is derived from class
 function qhunDerivedFrom(object, class)
-    return getmetatable(getmetatable(object).__index).__index == class
+    local metaDirectClass = getmetatable(object)
+
+    if not metaDirectClass then
+        return false
+    end
+
+    local metaDirevedClass = getmetatable(metaDirectClass.__index)
+
+    if not metaDirevedClass then
+        return false
+    end
+
+    return metaDirevedClass.__index == class
+end
+
+-- checks if the given object is an instanceof class
+function qhunInstanceOf(object, class)
+    local meta = getmetatable(object)
+
+    if not meta then
+        return false
+    end
+
+    return meta.__index == class
 end
 
 -- returns a table that contains all original table data and
@@ -130,6 +153,13 @@ function qhunTableValueOrDefault(originalTable, defaultValues)
         elseif originalTable[k] ~= nil then
             values[k] = originalTable[k]
         else
+            values[k] = v
+        end
+    end
+
+    -- add originalTable entries that do not exists in the defaultValues
+    for k, v in pairs(originalTable) do
+        if type(values[k]) == "nil" then
             values[k] = v
         end
     end

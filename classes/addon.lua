@@ -41,6 +41,17 @@ function QhunCore.Addon.coreInit()
                 for _, data in pairs(addonLoadCallbackStack) do
                     data.callback(data.addon)
                 end
+
+                -- create a core storage containing character data
+                QhunCore.characterStorage = QhunCore.Storage.new("QhunCore", "character", false)
+
+                -- add the character to the character storage
+                local charName = UnitName("player")
+                local charRealm = GetRealmName()
+                local guid = UnitGUID("player")
+
+                -- write the data to the storage
+                QhunCore.characterStorage:set(guid, {name = charName, realm = charRealm}):commit()
             elseif eventName == "PLAYER_LOGOUT" then
                 for _, data in pairs(addonUnloadCallbackStack) do
                     data.callback(data.addon)
@@ -105,12 +116,8 @@ end
             disabled?: boolean = false
             -- every element that will be rendered
             -- on the settings page
-            elements: {? extends QhunCore.AbstractUiElement}[]
-        },
-        -- will be called if the user clicks the OK button in the interface options
-        okCallback?: function,
-        -- will be called if the user clicks the cancel button in the interacfe options
-        cancelCallback?: function
+            elements: {? extends QhunCore.AbstractUiElement}[] | QhunCore.ProfileUiElement
+        }
     }
     returns self or false
 ]]
@@ -133,6 +140,26 @@ function QhunCore.Addon:registerInterfaceSettings(storage, interfaceOptions)
                 return
             end
 
+            -- add default disable
+            if option.disable == nil then
+                option.disable = false
+            end
+
+            -- check if the elements section is special
+            if qhunInstanceOf(option.elements, QhunCore.ProfileUiElement) then
+                -- wrap the element with a table
+                interfaceOptions[key].elements = {
+                    option.elements
+                }
+
+                -- skip element check
+                return
+            end
+
+            if option.elements == nil then
+                print(option.name)
+            end
+
             -- all elements must be an extend of AbstractUiElement
             for _, element in pairs(option.elements) do
                 if not qhunDerivedFrom(element, QhunCore.AbstractUiElement) then
@@ -143,11 +170,6 @@ function QhunCore.Addon:registerInterfaceSettings(storage, interfaceOptions)
                     ):send()
                     return false
                 end
-            end
-
-            -- add default disable
-            if option.disable == nil then
-                option.disable = false
             end
         end)()
     end

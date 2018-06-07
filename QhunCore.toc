@@ -2,7 +2,7 @@
 ## Title: QhunCore |c0000ff00[Lib]
 ## Author: wartoshika <dev@qhun.de>
 ## Notes: The core lib for my addons
-## Version: 2.0
+## Version: 3.0.0
 ## DefaultState: enabled
 ## OptionalDeps: QhunDebug, QhunUnitTest
 ## SavedVariables: QhunCoreGlobalStorage
@@ -22,13 +22,17 @@ classes/ui/tableUiElement.lua
 classes/ui/sliderUiElement.lua
 classes/ui/textboxUiElement.lua
 classes/ui/textUiElement.lua
+classes/ui/selectboxUiElement.lua
+classes/ui/profileUiElement.lua
 classes/ui/interfaceRenderer.lua
 classes/ui/interfaceSettingGenerator.lua
 
 classes/eventEmitter.lua
 classes/addon.lua
 classes/translation.lua
-classes/storage.lua
+
+classes/storage/storage.lua
+classes/storage/profileStorage.lua
 
 tests/eventEmitter.test.lua
 tests/translation.test.lua
