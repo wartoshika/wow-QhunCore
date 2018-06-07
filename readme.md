@@ -10,9 +10,9 @@ If you want to contribute to this addon, please develop your features/bug fixes 
 
 Please also consider to writing unit tests for your changes. I included my own unit testing framework to make sure everything works as expected (Please follow the current existing examples for the documentation of the QhunUnitTest addon)
 
-# API
+# Documentation
 
-API documentation is on my todo list :)
+You can take a look at the documentation folder. Start with [documentation/qhunCore.md](./documentation/qhunCore.md).
 
 # Licence
 
