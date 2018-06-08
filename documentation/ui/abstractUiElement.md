@@ -48,6 +48,8 @@ function MyAddon.MySimpleTextUiElement:onStorageReset(storage)
 end
 ```
 
+---
+
 # Static API
 
 ## Constructor

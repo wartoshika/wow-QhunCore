@@ -21,7 +21,7 @@ function QhunCore.SelectboxUiElement.new(lable, storageIdentifyer, values, setti
     if type(values) ~= "table" then
         QhunCore.WarningMessage.new(
             "The given value element is no table. I set an empty table as values but this might be an error!"
-        )
+        ):send()
     end
 
     -- call super class

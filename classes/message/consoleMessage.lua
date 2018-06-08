@@ -13,20 +13,20 @@ QhunCore.ConsoleMessage.__index = QhunCore.ConsoleMessage
     }
 ]]
 function QhunCore.ConsoleMessage.new(text, colorRGB)
-    -- default color value
-    if type(colorRGB) ~= "table" then
-        colorRGB = {r = 1, g = 1, b = 1}
-    end
-
     -- call super class
-    local instance = QhunCore.AbstractMessage.new()
+    local instance = QhunCore.AbstractMessage.new(text)
 
     -- set private vars
     instance._channel = "CONSOLE"
-    instance._text = text
-    instance._sender = function(text)
-        DEFAULT_CHAT_FRAME:AddMessage(text, colorRGB.r, colorRGB.b, colorRGB.g)
-    end
+    instance._colorRGB =
+        qhunTableValueOrDefault(
+        colorRGB,
+        {
+            r = 1,
+            g = 1,
+            b = 1
+        }
+    )
 
     -- bind current values
     setmetatable(instance, QhunCore.ConsoleMessage)
@@ -36,3 +36,11 @@ end
 
 -- set inheritance
 setmetatable(QhunCore.ConsoleMessage, {__index = QhunCore.AbstractMessage})
+
+--[[
+    PUBLIC FUNCTIONS
+]]
+function QhunCore.ConsoleMessage:send()
+    DEFAULT_CHAT_FRAME:AddMessage(text, self._colorRGB.r, self._colorRGB.b, self._colorRGB.g)
+    return true
+end
