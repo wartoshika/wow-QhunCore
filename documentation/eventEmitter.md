@@ -4,6 +4,25 @@ This class provides an easy way to bind callback functions to your own defined e
 
 **Important:** This event emitter does not include WoW specific events!
 
+## List of QhunCore Events
+
+- **STORAGE_UNCOMMITTED_CHANGED** with parameters **(identifyer, value)**
+  <br />
+  Is emitted if the storage has new uncommited changes in the pipeline.
+  <br />
+  **Parameters:**
+  - identifyer (string) - *The full identifyer for the changed value*
+  - value (any) - *The value that was written to the storage*
+- **STORAGE_COMMITTED** with parameters **(uncommitedChanges)**
+  <br />
+  Is emitted if all uncommited values has been commited and written to the persistence layer.
+  <br />
+  **Parameters:**
+  - uncommitedChanges (table) - *All values that has been commited as neasted table*
+- **STORAGE_RESET** with no parameters
+  <br />
+  Is emitted if all uncommited storage value has been reset.
+
 ## Example
 
 An example from my `QhunUnitHealth` addon where i use this event emitter. This example show the usage of the global core event emitter instance to update frame settings if the storage received new uncommited values.
