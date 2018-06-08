@@ -12,7 +12,8 @@ function QhunCore.Addon.new(addonName)
         _addonName = addonName,
         _addonLoadCallback = nil,
         _addonUnloadCallback = nil,
-        _addonInterfaceSettings = {}
+        _addonInterfaceSettings = {},
+        _addonMigrationStack = {}
     }
 
     setmetatable(instance, QhunCore.Addon)
@@ -32,13 +33,23 @@ function QhunCore.Addon.coreInit()
     eventFrame:RegisterEvent("PLAYER_LOGIN")
     eventFrame:RegisterEvent("PLAYER_LOGOUT")
 
+    -- create a migration execution context
+    local migrationExecutor = QhunCore.MigrationExecutor.new()
+
     eventFrame:SetScript(
         "OnEvent",
         function(_, eventName, ...)
             -- if the event is login or logout, do it here
             -- other cases will go to the event engine
             if eventName == "PLAYER_LOGIN" then
+
+                
                 for _, data in pairs(addonLoadCallbackStack) do
+
+                    -- before the child addon is loaded do some data migrations if nessesary
+                    migrationExecutor:runMigrations(data.addon.__addonMigrationStack)
+
+                    -- now init the addon
                     data.callback(data.addon)
                 end
 
@@ -94,6 +105,11 @@ function QhunCore.Addon:registerAddonUnload(callbackFunction)
     table.insert(addonUnloadCallbackStack, {addon = self, callback = callbackFunction})
 
     return self
+end
+
+-- registers a migration to run before the addon loads
+function QhunCore.Addon:registerMigration(migration)
+    table.insert(self._addonMigrationStack, migration)
 end
 
 -- registers addon interface settings

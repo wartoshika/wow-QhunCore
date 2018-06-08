@@ -59,7 +59,10 @@ function MyAddon.MyLogger:send()
         fktn()
     else
         print("Given parameter logLevel has an unknown value")
+        return false
     end
+
+    return true
 end
 ```
 

@@ -41,6 +41,6 @@ setmetatable(QhunCore.ConsoleMessage, {__index = QhunCore.AbstractMessage})
     PUBLIC FUNCTIONS
 ]]
 function QhunCore.ConsoleMessage:send()
-    DEFAULT_CHAT_FRAME:AddMessage(text, self._colorRGB.r, self._colorRGB.b, self._colorRGB.g)
+    DEFAULT_CHAT_FRAME:AddMessage(self._text, self._colorRGB.r, self._colorRGB.b, self._colorRGB.g)
     return true
 end

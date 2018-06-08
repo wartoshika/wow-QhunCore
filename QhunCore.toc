@@ -8,9 +8,11 @@
 ## SavedVariables: QhunCoreGlobalStorage
 ## SavedVariablesPerCharacter: QhunCoreCharacterStorage
 
+# GLOBAL INCLUDES
 global.lua
 functions.lua
 
+# FEATURE INCLUDES
 classes/message/abstractMessage.lua
 classes/message/consoleMessage.lua
 classes/message/errorMessage.lua
@@ -34,10 +36,18 @@ classes/translation.lua
 classes/storage/storage.lua
 classes/storage/profileStorage.lua
 
+classes/migration/abstractMigration.lua
+classes/migration/migrationExecutor.lua
+
+# MIGRATION FILES
+migrations/migration_2.0_to_3.0.lua
+
+# UNIT TEST FILES
 tests/eventEmitter.test.lua
 tests/translation.test.lua
 tests/storage.test.lua
 tests/function.test.lua
 tests/qhunCore.test.lua
 
+# CORE AND START POINT
 core.lua

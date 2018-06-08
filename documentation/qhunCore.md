@@ -11,6 +11,7 @@ All classes and functions are bound to the global variable namespace and are acc
 - Simple interface settings by just providing a table with the preconfigured interface elements.
 - An event emitter and listener system that allows to talk in a very efficient way with other classes/methods and even other addons.
 - A translation system that handles multiple languages, fallback language and the replacement of variables in the language file.
+- A migration system that allows addon developer to adjust data when moving from one version to another
 
 ## List of example projects that uses QhunCore
 
@@ -91,3 +92,6 @@ You can review every class in its own documentation file. This list should provi
 - `QhunCore.TableUiElement` ([Documentation](./ui/tableUiElement.md))
 - `QhunCore.TextboxUiElement` ([Documentation](./ui/textboxUiElement.md))
 - `QhunCore.TextUiElement` ([Documentation](./ui/textUiElement.md))
+- migration folder
+- `QhunCore.MigrationExecutor` ([Documentation](./migration/migrationExecutor.md))
+- `QhunCore.AbstractMigration` ([Documentation](./migration/abstractMigration.md))

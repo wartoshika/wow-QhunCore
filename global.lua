@@ -1,3 +1,4 @@
 QhunCore = {
-    Test = {}
+    Test = {},
+    Migrations = {}
 }
