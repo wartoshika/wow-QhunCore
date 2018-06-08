@@ -4,7 +4,7 @@ QhunCore.TextboxUiElement.__index = QhunCore.TextboxUiElement
 -- constructor
 --[[
     {
-        label: string,
+        lable: string,
         storageIdentifyer: string,
         settings?: {
             boxWidth?: number = 20
@@ -12,12 +12,12 @@ QhunCore.TextboxUiElement.__index = QhunCore.TextboxUiElement
         }
     }
 ]]
-function QhunCore.TextboxUiElement.new(label, storageIdentifyer, settings)
+function QhunCore.TextboxUiElement.new(lable, storageIdentifyer, settings)
     -- call super class
     local instance = QhunCore.AbstractUiElement.new(storageIdentifyer)
 
     -- bind properties
-    instance._label = label
+    instance._lable = lable
     instance._settings =
         qhunTableValueOrDefault(
         settings,
@@ -47,27 +47,27 @@ function QhunCore.TextboxUiElement:render(storage, parentFrame)
     -- create a wrapper, lable and textbox
     local wrapper = CreateFrame("FRAME", nil, parentFrame)
     local textbox = CreateFrame("EditBox", nil, wrapper, "InputBoxTemplate")
-    local label = wrapper:CreateFontString("$parentTitle", "ARTWORK")
+    local lable = wrapper:CreateFontString("$parentTitle", "ARTWORK")
 
     -- configure each object
     wrapper:SetHeight(25)
 
-    label:SetPoint("LEFT", wrapper, "LEFT", 0, 0)
-    label:SetFont("Fonts\\FRIZQT__.TTF", 11)
-    label:SetText(self._label)
+    lable:SetPoint("LEFT", wrapper, "LEFT", 0, 0)
+    lable:SetFont("Fonts\\FRIZQT__.TTF", 11)
+    lable:SetText(self._lable)
 
-    wrapper:SetWidth(label:GetWidth() + self._settings.boxWidth + 10)
+    wrapper:SetWidth(lable:GetWidth() + self._settings.boxWidth + 10)
 
     textbox:SetAutoFocus(false)
     textbox:SetCursorPosition(0)
     textbox:SetFontObject("ChatFontNormal")
     textbox:SetText(initialValue or "")
     textbox:SetWidth(self._settings.boxWidth)
-    textbox:SetPoint("LEFT", wrapper, "LEFT", label:GetWidth() + 10, 0)
+    textbox:SetPoint("LEFT", wrapper, "LEFT", lable:GetWidth() + 10, 0)
     textbox:SetSize(wrapper:GetSize())
 
     -- apply final width
-    wrapper:SetSize(label:GetWidth() + textbox:GetWidth(), 25)
+    wrapper:SetSize(lable:GetWidth() + textbox:GetWidth(), 25)
 
     -- add extra padding
     wrapper._qhunCoreExtraPadding = self._settings.padding

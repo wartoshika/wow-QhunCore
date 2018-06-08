@@ -4,7 +4,7 @@ QhunCore.SliderUiElement.__index = QhunCore.SliderUiElement
 -- constructor
 --[[
     {
-        label: string,
+        lable: string,
         storageIdentifyer: string,
         settings?: {
             min?: number = 0
@@ -17,12 +17,12 @@ QhunCore.SliderUiElement.__index = QhunCore.SliderUiElement
         }
     }
 ]]
-function QhunCore.SliderUiElement.new(label, storageIdentifyer, settings)
+function QhunCore.SliderUiElement.new(lable, storageIdentifyer, settings)
     -- call super class
     local instance = QhunCore.AbstractUiElement.new(storageIdentifyer)
 
     -- bind properties
-    instance._label = label
+    instance._lable = lable
     instance._settings =
         qhunTableValueOrDefault(
         settings,
@@ -57,12 +57,12 @@ function QhunCore.SliderUiElement:render(storage, parentFrame)
     local initialValue = self:getStorageValue(storage) or 0
 
     local wrapper = CreateFrame("FRAME", nil, parentFrame)
-    local label = wrapper:CreateFontString("$parentTitle", "ARTWORK")
+    local lable = wrapper:CreateFontString("$parentTitle", "ARTWORK")
 
-    -- add label
-    label:SetPoint("LEFT", wrapper, "LEFT", 0, 0)
-    label:SetFont("Fonts\\FRIZQT__.TTF", 11)
-    label:SetText(self._label)
+    -- add lable
+    lable:SetPoint("LEFT", wrapper, "LEFT", 0, 0)
+    lable:SetFont("Fonts\\FRIZQT__.TTF", 11)
+    lable:SetText(self._lable)
 
     local slider = CreateFrame("Slider", "qhunCoreUiSlider_" .. qhunUuid(), wrapper, "OptionsSliderTemplate")
     slider:SetWidth(self._settings.width)
@@ -70,7 +70,7 @@ function QhunCore.SliderUiElement:render(storage, parentFrame)
     slider:SetOrientation("HORIZONTAL")
     slider:SetMinMaxValues(self._settings.min, self._settings.max)
     slider:SetValueStep(self._settings.steps)
-    slider:SetPoint("LEFT", wrapper, "LEFT", label:GetWidth() + 25, 0)
+    slider:SetPoint("LEFT", wrapper, "LEFT", lable:GetWidth() + 25, 0)
 
     -- set the initial value
     slider:SetValue(initialValue)
@@ -96,12 +96,12 @@ function QhunCore.SliderUiElement:render(storage, parentFrame)
         end
     )
 
-    -- bind slider, label and wrapper
+    -- bind slider, lable and wrapper
     wrapper.slider = slider
-    wrapper.label = label
+    wrapper.lable = lable
 
     -- apply final width
-    wrapper:SetSize(label:GetWidth() + slider:GetWidth(), 25)
+    wrapper:SetSize(lable:GetWidth() + slider:GetWidth(), 25)
 
     -- add extra padding and tooltip
     wrapper._qhunCoreExtraPadding = self._settings.padding

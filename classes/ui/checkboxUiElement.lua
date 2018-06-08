@@ -4,8 +4,8 @@ QhunCore.CheckboxUiElement.__index = QhunCore.CheckboxUiElement
 -- constructor
 --[[
     {
-        -- the visible label for the checkbox
-        label: string,
+        -- the visible lable for the checkbox
+        lable: string,
         storage: {QhunCore.Storage}
         -- the property name in the storage to get and set this value
         storageIdentifyer: string,
@@ -14,12 +14,12 @@ QhunCore.CheckboxUiElement.__index = QhunCore.CheckboxUiElement
         }
     }
 ]]
-function QhunCore.CheckboxUiElement.new(label, storageIdentifyer, settings)
+function QhunCore.CheckboxUiElement.new(lable, storageIdentifyer, settings)
     -- call super class
     local instance = QhunCore.AbstractUiElement.new(storageIdentifyer)
 
     -- private properties
-    instance._label = label
+    instance._lable = lable
     instance._settings =
         qhunTableValueOrDefault(
         settings,
@@ -52,11 +52,11 @@ function QhunCore.CheckboxUiElement:render(storage, parentFrame)
     checkboxFrame:SetBackdropColor(0, 0, 0, .5)
     checkboxFrame:SetBackdropBorderColor(.5, .5, .5, 1)
 
-    -- add label
-    checkboxFrame.label = checkboxFrame:CreateFontString("$parentTitle", "ARTWORK")
-    checkboxFrame.label:SetPoint("LEFT", checkboxFrame, "LEFT", 30, 0)
-    checkboxFrame.label:SetFont("Fonts\\FRIZQT__.TTF", 11)
-    checkboxFrame.label:SetText(self._label)
+    -- add lable
+    checkboxFrame.lable = checkboxFrame:CreateFontString("$parentTitle", "ARTWORK")
+    checkboxFrame.lable:SetPoint("LEFT", checkboxFrame, "LEFT", 30, 0)
+    checkboxFrame.lable:SetFont("Fonts\\FRIZQT__.TTF", 11)
+    checkboxFrame.lable:SetText(self._lable)
 
     -- container background texture
     checkboxFrame.background = checkboxFrame:CreateTexture(nil, "BACKGROUND")
@@ -96,7 +96,7 @@ function QhunCore.CheckboxUiElement:render(storage, parentFrame)
     end
 
     -- set width after the complete object
-    checkboxFrame:SetWidth(35 + checkboxFrame.label:GetWidth())
+    checkboxFrame:SetWidth(35 + checkboxFrame.lable:GetWidth())
 
     -- add extra padding and tooltip
     checkboxFrame._qhunCoreExtraPadding = self._settings.padding

@@ -4,7 +4,7 @@ QhunCore.SelectboxUiElement.__index = QhunCore.SelectboxUiElement
 -- constructor
 --[[
     {
-        label: string,
+        lable: string,
         storageIdentifyer: string,
         values: {
             [uniqueKeyIdentifyer: string]: string
@@ -17,7 +17,7 @@ QhunCore.SelectboxUiElement.__index = QhunCore.SelectboxUiElement
         onCHangeCallback?: function(newSelectedKey: string)
     }
 ]]
-function QhunCore.SelectboxUiElement.new(label, storageIdentifyer, values, settings, onChangeCallback)
+function QhunCore.SelectboxUiElement.new(lable, storageIdentifyer, values, settings, onChangeCallback)
     if type(values) ~= "table" then
         QhunCore.WarningMessage.new(
             "The given value element is no table. I set an empty table as values but this meight be an error!"
@@ -28,7 +28,7 @@ function QhunCore.SelectboxUiElement.new(label, storageIdentifyer, values, setti
     local instance = QhunCore.AbstractUiElement.new(storageIdentifyer)
 
     -- bind properties
-    instance._label = label
+    instance._lable = lable
     instance._values = values
     instance._selectboxFrame = nil
     instance._onChangeCallback = onChangeCallback
