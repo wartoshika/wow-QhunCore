@@ -20,7 +20,7 @@ QhunCore.SelectboxUiElement.__index = QhunCore.SelectboxUiElement
 function QhunCore.SelectboxUiElement.new(lable, storageIdentifyer, values, settings, onChangeCallback)
     if type(values) ~= "table" then
         QhunCore.WarningMessage.new(
-            "The given value element is no table. I set an empty table as values but this meight be an error!"
+            "The given value element is no table. I set an empty table as values but this might be an error!"
         )
     end
 

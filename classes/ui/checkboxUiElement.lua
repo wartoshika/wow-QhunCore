@@ -6,7 +6,6 @@ QhunCore.CheckboxUiElement.__index = QhunCore.CheckboxUiElement
     {
         -- the visible lable for the checkbox
         lable: string,
-        storage: {QhunCore.Storage}
         -- the property name in the storage to get and set this value
         storageIdentifyer: string,
         settings?: {
@@ -24,8 +23,7 @@ function QhunCore.CheckboxUiElement.new(lable, storageIdentifyer, settings)
         qhunTableValueOrDefault(
         settings,
         {
-            padding = 0,
-            tooltip = nil
+            padding = 0
         }
     )
     instance._checkboxFrame = nil
