@@ -29,6 +29,12 @@ function QhunCore.AbstractUiElement:onStorageReset(storage)
     return
 end
 
+-- will be triggered if the element should update itself
+function QhunCore.AbstractUiElement:update()
+    QhunCore.ErrorMessage.new("QhunCore.AbstractUiElement:update() should be implemented in the child class!"):send()
+    return
+end
+
 --[[
     PUBLIC FUNCTIONS
 ]]
@@ -45,4 +51,10 @@ function QhunCore.AbstractUiElement:setStorageValue(storage, value)
             self._storageIdentifyer
         ):send()
     end
+end
+
+-- overrides the text if there is a text on this ui element
+-- put the parameters of the element's constructor function in here for an update
+function QhunCore.AbstractUiElement:forceUpdate(...)
+    self:update(...)
 end

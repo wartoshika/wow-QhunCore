@@ -118,3 +118,16 @@ Clones a given table including its metatable.
 - original (required, table) - *The table to clone*
 
 **Returns:** The cloned table
+
+## table `qhunGetMoneyValue(copper)`
+
+Returns the amount of gold, silver and copper from a total copper value
+
+**Parameters:**
+- copper (required, number) - *The total copper amount*
+
+**Returns:** The following table structure:
+- gold (number) - *the amount of gold*
+- silver (number) - *the amount of silver*
+- copper (number) - *the amount of copper*
+- isNegative (boolean) - *a flag if the given copper value is negative*

@@ -116,7 +116,6 @@ function QhunCore.InterfaceSettingGenerator:render()
     if self._parentDisplayName then
         title = self._parentDisplayName .. " > " .. title
     end
-
     -- add the page title
     table.insert(
         self._elements,
@@ -144,7 +143,16 @@ function QhunCore.InterfaceSettingGenerator:render()
         }
     )
 
+    -- render all elements
     self._elementRenderedStack = renderer:render()
+
+    -- add qhunCore watermark text
+    local waterMarkText = "QhunCore" .. " version " .. GetAddOnMetadata("QhunCore", "version")
+    local watermark = self._frame:CreateFontString()
+    watermark:SetFont("Fonts\\FRIZQT__.TTF", 11)
+    watermark:SetText(waterMarkText)
+    watermark:SetPoint("TOPRIGHT", self._frame, "TOPRIGHT", -5, 15)
+    watermark:SetTextColor(.5, .5, .5)
 
     -- set rendered
     self._frame._isRendered = true

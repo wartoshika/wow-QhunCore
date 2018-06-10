@@ -43,7 +43,7 @@ function QhunCore.Addon.coreInit()
             -- other cases will go to the event engine
             if eventName == "PLAYER_LOGIN" then
 
-                
+                -- iterate over every addon load callback in the stack
                 for _, data in pairs(addonLoadCallbackStack) do
 
                     -- before the child addon is loaded do some data migrations if nessesary

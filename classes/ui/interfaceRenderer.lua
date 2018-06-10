@@ -58,7 +58,7 @@ function QhunCore.InterfaceRenderer:render()
     for _, element in pairs(self._elements) do
         table.insert(self._renderCache, element:render(self._storage, self._parentFrame))
     end
-
+    
     -- vars to adjust the positions
     local yOffset = self._startOffset.y
     local xOffset = self._startOffset.x

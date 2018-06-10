@@ -317,3 +317,49 @@ function qhunCloneTable(original)
     end
     return copy
 end
+
+-- returns the amount of gold, silver and copper from a total copper value
+--[[
+    {
+        copper: number
+    }
+    returns {
+        gold: number = 0,
+        silver: number = 0,
+        copper: number = 0,
+        isNegative: boolean = false
+    }
+]]
+function qhunGetMoneyValue(copper)
+    -- extract gold silver and copper
+    local copperChk = copper
+    local isNegative = false
+
+    if copperChk < 0 then
+        copperChk = copper * -1
+        isNegative = true
+    end
+    copperChk = string.reverse(tostring(copperChk))
+
+    local gold = copperChk:sub(5)
+    silver = copperChk:sub(3, 4)
+    copper = copperChk:sub(1, 2)
+
+    -- if there is an empty value, set it to 0
+    if gold == "" then
+        gold = "0"
+    end
+    if silver == "" then
+        silver = "0"
+    end
+    if copper == "" then
+        copper = "0"
+    end
+
+    return {
+        gold = tonumber(gold:reverse()),
+        silver = tonumber(silver:reverse()),
+        copper = tonumber(copper:reverse()),
+        isNegative = isNegative
+    }
+end
